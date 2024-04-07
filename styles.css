@@ -6,7 +6,7 @@ body {
   transition: background-color 0.3s;
 }
 
-header, footer {
+header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,15 +15,6 @@ header, footer {
   text-align: center;
 }
 
-footer {
-  position: flex;
-  bottom: 0;
-  width: 100%;
-}
-footer h1 {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
 
 .content-section {
   padding: 20px;
@@ -101,6 +92,8 @@ footer {
   padding: 12px;
   text-align: left;
   border: 1px solid #ddd;
+  min-width: 150px; /* Asegura un ancho mínimo para las celdas */
+  word-break: break-word; /* Permite que el contenido se ajuste al ancho de la celda */
 }
 
 #creditos th {
@@ -119,13 +112,25 @@ footer {
 /* Estilos para hacer la tabla más responsive */
 @media (max-width: 768px) {
   #creditos table {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: block;
+    overflow-x: auto;
   }
   
   #creditos th, #creditos td {
-    padding: 10px;
+    padding: 8px;
     font-size: 14px;
+    display: block;
+    width: auto; /* Permitir que las celdas se expandan según su contenido */
+  }
+  
+  #creditos th {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center; /* Alineamos el texto al centro en la cabecera */
+  }
+  
+  #creditos tr:not(:last-child) {
+    border-bottom: 1px solid #000000; /* Agregamos borde en la parte inferior de cada fila, excepto la última */
   }
 }
 
