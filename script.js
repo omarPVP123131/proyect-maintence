@@ -97,6 +97,24 @@ menuOverlay.addEventListener("click", function () {
   menuIcon.classList.remove("rotated");
 });
 
+$(document).ready(function(){
+  $('.notices-carousel').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+});
+
 menuLinks.forEach(function (link) {
   link.addEventListener("click", function () {
     menuOverlay.classList.add("hide");
