@@ -356,7 +356,7 @@ function cellExchange(indexfrom, indexto) {
         imgRandArr[indexfrom] = imgRandArr[indexto];
         imgRandArr[indexto] = temp;
 
-        $("#scroe").text("步数：" + (scroe += 1));
+        $("#scroe").text("Moves：" + (scroe += 1));
 
         //判断是否完成全部移动，可以结束游戏
         if (checkPass(imgOrigArr, imgRandArr)) {
