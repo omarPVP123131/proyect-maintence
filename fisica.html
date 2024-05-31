@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="a.png" type="image/png" />
+    <title>Cambio Climático</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Slick Carousel -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+    ></script>
+    <style>
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background-color: #4caf50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.header-container {
+    position: static;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4caf50;
+    padding: 10px 20px;
+}
+
+.header-container a img {
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.header-container h1 {
+    flex-grow: 1;
+    margin: 0;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-size: 32px;
+}
+
+.header-container nav a {
+    margin-right: 15px;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header-container nav a:hover {
+    color: #e0e0e0;
+}
+
+/* Navigation styles */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffd700;
+}
+
+/* Navigation buttons styles */
+.nav-buttons {
+    margin-right: 4%;
+}
+
+.nav-buttons button {
+    background-color: white;
+    color: #4caf50;
+    border: 2px solid #4caf50;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-buttons button:hover {
+    background-color: #4caf50;
+    color: white;
+}
+
+/* Main content styles */
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Image container styles */
+.image-container {
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.image-container img:hover {
+    transform: scale(1.05);
+}
+
+/* Articles styles */
+#articulos {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#articulos h2 {
+    color: #4caf50;
+}
+
+#articulos article {
+    margin: 20px 0;
+}
+
+#articulos h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#articulos p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Contact section styles */
+#contacto {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#contacto h2 {
+    color: #4caf50;
+}
+
+#contacto form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contacto label {
+    margin: 10px 0 5px;
+}
+
+#contacto input,
+#contacto textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#contacto button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#contacto button:hover {
+    background-color: #45a049;
+}
+
+/* Footer styles */
+footer {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.menu-icon {
+    display: block;
+    cursor: pointer;
+    font-size: 32px;
+    transition: transform 0.3s ease;
+    position: absolute; /* Agregamos posicionamiento absoluto */
+    top: 20px; /* Ajustamos la distancia desde arriba */
+    right: 20px; /* Ajustamos la distancia desde la derecha */
+}
+
+.menu-icon.rotated {
+    transform: rotate(90deg);
+}
+
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+}
+
+.menu-overlay.show {
+    display: block;
+    animation: fadedIn 0.3s forwards;
+}
+
+.menu-overlay.hide {
+    animation: fadedOut 0.3s forwards;
+}
+
+.menu-overlay nav {
+    position: absolute;
+    top: 50%;
+    left
+    : 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+}
+
+.menu-overlay nav a {
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+}
+
+.menu-overlay nav a:hover {
+    color: #007bff;
+    background-color: #e9ecef;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    header {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    .nav-buttons button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    #contacto form {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+@keyframes fadedIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadedOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+        
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container" id="inicio">
+
+      <div class="menu-overlay" id="menuOverlay">
+        <nav>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#articulos">Artículos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <h1>Cambio Climático</h1>
+
+      <div class="nav-buttons">
+        <button onclick="">Quiz</button>
+        <a href="rompecabezas.html">
+            <button>Rompecabezas</button>
+        </a>
+        
+      </div>
+
+      <span class="menu-icon">&#9776;</span>
+
+    </header>
+
+    <div class="main-content">
+      <section id="inicio">
+        <div class="image-container">
+          <img src="aa.png" alt="Imagen de Cambio Climático" />
+        </div>
+      </section>
+      <section id="articulos">
+        <h2>Artículos sobre Cambio Climático</h2>
+        <article>
+            <h3>Impacto del Cambio Climático en los Ecosistemas Marinos</h3>
+            <p>El cambio climático está afectando profundamente a los ecosistemas marinos en todo el mundo. El aumento de las temperaturas oceánicas está causando la acidificación de los océanos, lo que tiene graves consecuencias para la vida marina. Además, el derretimiento de los casquetes polares y los glaciares está elevando el nivel del mar, amenazando las zonas costeras y sus ecosistemas. Es crucial tomar medidas urgentes para mitigar estos efectos y proteger la biodiversidad marina.</p>
+        </article>
+        <article>
+            <h3>Desafíos Agrícolas Frente al Cambio Climático</h3>
+            <p>La agricultura enfrenta importantes desafíos debido al cambio climático. El aumento de las temperaturas y los patrones de precipitación impredecibles están afectando la producción de cultivos en todo el mundo. Sequías más frecuentes, inundaciones repentinas y eventos climáticos extremos están poniendo en peligro la seguridad alimentaria de millones de personas. Los agricultores están adoptando prácticas más sostenibles y resistentes al clima para adaptarse a estos cambios, pero se necesita una acción global coordinada para abordar adecuadamente este desafío.</p>
+        </article>
+    </section>
+    
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <form>
+          <label for="email">Correo Electrónico:</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Mensaje:</label>
+          <textarea id="message" name="message" required></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+    </div>
+    <footer>
+      <p>&copy; 2024 Cambio Climático. Todos los derechos reservados.</p>
+    </footer>
+  </body>
+
+  <script>
+    // Código para el menú desplegable
+    const menuIcon = document.querySelector(".menu-icon");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const menuLinks = document.querySelectorAll(".menu-overlay nav a");
+
+    menuIcon.addEventListener("click", function () {
+      if (menuOverlay.style.display === "block") {
+        menuOverlay.classList.add("hide");
+        menuOverlay.classList.remove("show");
+        setTimeout(() => {
+          menuOverlay.style.display = "none";
+        }, 300);
+      } else {
+        menuOverlay.style.display = "block";
+        menuOverlay.classList.add("show");
+        menuOverlay.classList.remove("hide");
+      }
+
+      menuIcon.classList.toggle("rotated");
+    });
+
+    menuOverlay.addEventListener("click", function () {
+      this.classList.add("hide");
+      this.classList.remove("show");
+      setTimeout(() => {
+        this.style.display = "none";
+      }, 300);
+      menuIcon.classList.remove("rotated");
+    });
+
+    $(document).ready(function () {
+      $(".notices-carousel").slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      });
+    });
+
+    menuLinks.forEach(function (link) {
+      link.addEventListener("click", function () {
+        menuOverlay.classList.add("hide");
+        menuOverlay.classList.remove("show");
+        setTimeout(() => {
+          menuOverlay.style.display = "none";
+        }, 300);
+        menuIcon.classList.remove("rotated");
+      });
+    });
+  </script>
+</html>
