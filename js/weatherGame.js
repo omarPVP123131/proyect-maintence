@@ -103,37 +103,31 @@ function bindbtn() {
   });
 }
 
-// Enlazar el botón de selección de dificultad
-function enlazarNivel() {
-  // Cambiar la dificultad
-  $("#nivel").click(function () {
-    if (enJuego) {
-      alerta(
-        "Reiniciar",
-        "El juego aún no ha terminado. ¿Estás seguro de que quieres cambiar la dificultad y reiniciar?",
-        function () {
-          if (nivel < 6) {
-            nivel += 1;
-          } else {
-            nivel = 3;
+function bindlevel() {
+  //切换难度
+  $("#level").click(function () {
+      if (isInGame){
+          alertBox("Reiniciar", "El juego aún no ha terminado. ¿Estás seguro de que quieres cambiar la dificultad y reiniciar?？", function () {
+              if (lever < 6){
+                  lever += 1;
+              }else {
+                  lever = 3;
+              }
+              imgSplit(presentImg);
+              rebackGame();
+              $("#level").text("level: " + lever + "x" + lever);
+          })
+      }else {
+          if (lever < 6){
+              lever += 1;
+          }else {
+              lever = 3;
           }
-          dividirImagen(imagenActual);
-          reiniciarJuego();
-          $("#nivel").text("Nivel: " + nivel + "x" + nivel);
-        }
-      );
-    } else {
-      if (nivel < 6) {
-        nivel += 1;
-      } else {
-        nivel = 3;
+          imgSplit(presentImg);
+          $("#level").text("level: " + lever + "x" + lever);
       }
-      dividirImagen(imagenActual);
-      $("#nivel").text("Nivel: " + nivel + "x" + nivel);
-    }
   });
 }
-
 //复原游戏
 function rebackGame() {
   imgCells.unbind("mouseover");
